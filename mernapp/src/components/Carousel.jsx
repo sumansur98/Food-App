@@ -4,49 +4,22 @@ export default function Carousel() {
     return (
         <>
             <div id="carouselExampleCaptions" className="carousel slide">
-                <div className="carousel-indicators">
-                    <button
-                        type="button"
-                        data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide-to={0}
-                        className="active"
-                        aria-current="true"
-                        aria-label="Slide 1"
-                    />
-                    <button
-                        type="button"
-                        data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide-to={1}
-                        aria-label="Slide 2"
-                    />
-                    <button
-                        type="button"
-                        data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide-to={2}
-                        aria-label="Slide 3"
-                    />
+                <div className="carousel-caption" style={{'zIndex' : 10}}>
+                    <form className="d-flex" role="search">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="https://source.unsplash.com/random/300x300/burger" className="d-block w-100" alt="..." />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
+                        <img style={{'width':'900px','height':'700px'}} src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1998&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://source.unsplash.com/random/300x300/momos" className="d-block w-100" alt="..." />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
+                        <img src="https://source.unsplash.com/random/300x300/?momos" className="d-block w-100" alt="..." />
+
                     </div>
                     <div className="carousel-item">
-                        <img src="https://source.unsplash.com/random/300x300/pasta" className="d-block w-100" alt="..." />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
+                        <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2023/05/red-sauce-pasta-recipe.jpg" className="d-block w-100" alt="..." />
                     </div>
                 </div>
                 <button
