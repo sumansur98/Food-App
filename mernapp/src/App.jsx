@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 
 
@@ -16,6 +17,10 @@ function App() {
     {
       path: "/login",
       element: <Login/>,
+    },
+    {
+      path: "/createuser",
+      element: <SignUp/>,
     },
   ]);
 

@@ -3,9 +3,7 @@ const mongoURI = "mongodb+srv://sumansur98:sumansur98@myatlasclusteredu.yrxkven.
 
 
 const connectToMongo = async () => {
-   await mongoose.connect(mongoURI, {
-        dbName: 'foodMern',
-    }).then(()=>{
+   await mongoose.connect(mongoURI).then(()=>{
         console.log('connected to mongo');
     }).catch(()=>{
         console.log('error')
