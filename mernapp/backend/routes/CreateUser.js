@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const { body, validationResult } = require('express-validator');
-
-
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secret = "thisisjwtsecret";
 router.post('/createuser', [
     body('email').isEmail(),
     body('password').isLength({ min: 5 })
@@ -19,12 +20,14 @@ router.post('/createuser', [
             return res.status(400).json({ errors: errors.array() });
 
         }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPwd = await bcrypt.hash(req.body.password, salt);
 
         try {
             await User.create({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password,
+                password: hashedPwd,
                 location: req.body.location
             })
             console.log('user created')
@@ -55,10 +58,18 @@ router.post('/loginuser', [
             console.log('invalid credentials');
             return res.status(400).json({ error: "no user found" })
         }
+        const pwdMatch =await bcrypt.compare(req.body.password, user.password)
+        if(pwdMatch){
+            console.log('user found');
 
-        if(user.password === req.body.password){
-            console.log('user found')
-            res.json({ success: true })
+            const jwtData = {
+                user : {
+                    id : user.id
+                }
+            }
+            const authToken = jwt.sign(jwtData, secret);
+
+            res.json({ success: true , authToken : authToken});
         }else{
             console.log('password not match');
             res.json({ success: false })

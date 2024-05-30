@@ -29,7 +29,9 @@ export default function Login() {
 
     console.log(res);
     if(res.success){
-      console.log('redirect')
+      console.log('redirect');
+      localStorage.setItem("authToken", res.authToken);
+      console.log(localStorage.getItem("authToken"));
       navigate("/");
     }else{
       alert('wrong');
