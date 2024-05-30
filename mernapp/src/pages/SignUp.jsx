@@ -1,28 +1,29 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function SignUp() {
 
     const [credentials, setcredentials] = useState({
-        name : "",
-        email : '',
-        password : '',
-        location : ''
+        name: "",
+        email: '',
+        password: '',
+        location: ''
     })
 
     const handleOnChange = (e) => {
-        setcredentials({...credentials, [e.target.id] : e.target.value})
+        setcredentials({ ...credentials, [e.target.id]: e.target.value })
     }
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         console.log('submit clicke with data', credentials);
-        const response = await fetch('http://localhost:3030/api/createuser',{
-            method : 'POST',
+        const response = await fetch('http://localhost:3030/api/createuser', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              },
-            body : JSON.stringify(credentials),
+            },
+            body: JSON.stringify(credentials),
         })
 
         const res = await response.json();
@@ -46,7 +47,7 @@ export default function SignUp() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">
-                        Email 
+                        Email
                     </label>
                     <input
                         type="email"
@@ -70,7 +71,7 @@ export default function SignUp() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="location" className="form-label">
-                        Location 
+                        Location
                     </label>
                     <input
                         type="text"
@@ -83,6 +84,11 @@ export default function SignUp() {
                 <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
+                <Link to='/login'>
+                    <button className="btn btn-success">
+                        Already a User
+                    </button>
+                </Link>
             </form>
 
         </div>

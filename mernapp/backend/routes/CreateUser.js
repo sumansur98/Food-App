@@ -35,8 +35,39 @@ router.post('/createuser', [
         }
     })
 
-router.get('/hello', (req, res) => {
-    res.send('hello world');
+router.post('/loginuser', [
+    body('email').isEmail(),
+    body('password').isLength({ min: 5 })
+], async (req, res) => {
+    console.log('login user hit')
+    console.log(req.body);
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log('validation errors')
+        return res.status(400).json({ errors: errors.array() });
+
+    }
+    try {
+        const email = req.body.email
+        const user = await User.findOne({email});
+        if(!user){
+            console.log('invalid credentials');
+            return res.status(400).json({ error: "no user found" })
+        }
+
+        if(user.password === req.body.password){
+            console.log('user found')
+            res.json({ success: true })
+        }else{
+            console.log('password not match');
+            res.json({ success: false })
+        }
+    } catch (error) {
+        console.log('error while creating user');
+        res.json({ success: false })
+    }
+
 })
 
 module.exports = router;
