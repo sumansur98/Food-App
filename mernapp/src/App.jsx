@@ -5,6 +5,7 @@ import {
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { CartProvider } from "./components/ContextReducer";
 
 
 
@@ -26,7 +27,9 @@ function App() {
 
   return (
     <>
+    <CartProvider>
       <RouterProvider router={router} />
+    </CartProvider>
     </>
   )
 }

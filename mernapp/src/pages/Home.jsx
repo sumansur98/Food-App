@@ -34,7 +34,7 @@ export default function Home() {
         <div id="carouselExampleCaptions" className="carousel slide">
           <div className="carousel-caption" style={{ 'zIndex': 10 }}>
             <form className="d-flex" role="search">
-              <input className="form-control me-2" value={search} onChange={(e)=>{setsearch(e.target.value)}} type="search" placeholder="Search" aria-label="Search" />
+              <input className="form-control me-2" value={search} onChange={(e) => { setsearch(e.target.value) }} type="search" placeholder="Search" aria-label="Search" />
             </form>
           </div>
           <div className="carousel-inner">
@@ -83,10 +83,10 @@ export default function Home() {
                       foodItem.filter(food => food.CategoryName === cat.CategoryName && food.name.toLowerCase().includes(search.toLowerCase())).map(food => {
                         return (
                           <div key={food._id} className='col-12 col-md-6 col-lg-3'>
-                            <Card foodName={food.name}
-                              foodImg={food.img}
+                            <Card
+                              foodItem={food}
                               foodOptions={food.options}
-                              foodDesc={food.description} />
+                            />
                           </div>
                         )
                       })
